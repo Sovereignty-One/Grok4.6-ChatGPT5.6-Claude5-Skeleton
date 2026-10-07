@@ -1,31 +1,32 @@
-File: .github/workflows/linux-selfhosted.yml
-
 name: Self-Hosted Linux Workflow
 
 on:
   push:
-    branches: [ main ]
+    branches: 
+    - main
+    
   pull_request:
-    branches: [ main ]
+    branches: 
+    - main
 
 jobs:
-  build:
-    name: Build on Self-Hosted Linux
-    runs-on: self-hosted
+    build: 
+    name: Build on Ubuntu latest
+    runs-on: ubuntu-latest
     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v3
-
-      - name: Set up Node.js 18
-        uses: actions/setup-node@v3
-        with:
-          node-version: '18'
-
-      - name: Install Dependencies
-        run: npm install
-
-      - name: Run Tests
-        run: npm test
-
-      - name: Build Project
-        run: npm run build
+    - name: Checkout Repository
+      uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+     - name: Set up Node.js v.24
+       uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020
+       node-version: '24'
+   
+    - name: Install Dependencies
+    shell: bash
+    run: |
+        npm install
+        - name: Run Tests
+    run: |
+      npm test
+       - name: Build Project
+    run: |
+     npm run build
